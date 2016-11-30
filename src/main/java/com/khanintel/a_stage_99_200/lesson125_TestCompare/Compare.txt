@@ -1,0 +1,56 @@
+Comparable \ Comparator 的区别，引用的场景？
+    我的感觉-1
+        Comparable
+            含义：可比较的
+            这个一般用于类来增加自己的属性，代表“我是可以被比较的”
+        Comparator，
+            含义：比较器
+            你什么时候需要一个比较器的时候，或者就是想换个方法进行排序，用我~
+            而且，这个比较器可以脱离实体类来做，这个也是优点，因为我们可以对同一套数据，采取不同的排序算法啊
+        是否在实体类内实现
+            Comparable，这个就是实体类用到的，所以最好实体类implements Comparable
+            Comparator，这个的目的是脱离于实体类的，设计的时候，实体类不要implements这个接口，而是我们单独创建单独的Comparator实现类，就是做单一的比较器，或者就做成一个匿名类就好
+
+    感觉-2
+        因为都涉及到了是否“相等”的判断，那么就要涉及到是否 equals，也就是说，要重写 equals，那么，也需要考虑 hashCode方法
+
+
+Comparable代码查看
+    为什么 Integer Character 的 compareTo 方法不一样呢？
+        Integer: return (this,value < obj,value) ? -1 : ( (this,value == obj,value) ? 0 : 1 )
+        Character: return this.char - obj.char
+        因为考虑到可能的溢出的问题！
+
+
+1. 包装类型、内部类型的Comparable
+    Integer
+    Character
+    String
+    Date
+
+2. 写一个自己实现的、带有泛型的，Array.sort()，以及Collection.sort()
+    小小细节，注意 instanceof Comparable
+        public static <T extends Comparable<T>> void sort(T[] array)
+        注意这里的 <T extends Comparable<T>> ， 不是 <T extends Comparable> ，啊哈！
+        更加优雅的写法：public static <T extends Comparable<? super T>> void sort(T[] array)
+        Comparator<? super T>
+
+
+
+Comparable
+    int compareTo(T o)
+
+    This interface imposes a total ordering on the objects of each class that implements it. This ordering is referred to as the class's natural ordering, and the class's compareTo method is referred to as its natural comparison method.
+    此接口强行对实现它的每个类的对象进行整体排序。这种排序被称为类的自然排序，类的 compareTo 方法被称为它的自然比较方法。
+    实现此接口的对象列表（和数组）可以通过 Collections.sort（和 Arrays.sort）进行自动排序。
+    实现此接口的对象可以用作有序映射中的键或有序集合中的元素，无需指定比较器。
+
+
+Comparator
+    int compare(T o1, T o2)
+    boolean equals(Object obj)
+
+    A comparison function, which imposes a total ordering on some collection of objects. Comparators can be passed to a sort method (such as Collections.sort or Arrays.sort) to allow precise control over the sort order. Comparators can also be used to control the order of certain data structures (such as sorted sets or sorted maps), or to provide an ordering for collections of objects that don't have a natural ordering.
+    强行对某个对象 collection 进行整体排序 的比较函数。
+    可以将 Comparator 传递给 sort 方法（如 Collections.sort 或 Arrays.sort），从而允许在排序顺序上实现精确控制。
+    还可以使用 Comparator 来控制某些数据结构（如有序 set或有序映射）的顺序，或者为那些没有自然顺序的对象 collection 提供排序。

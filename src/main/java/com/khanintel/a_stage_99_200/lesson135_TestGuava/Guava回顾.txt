@@ -1,0 +1,18 @@
+Guava 回顾
+
+1. 下载
+    Maven (Maven 也能下载源代码、javadoc)
+2. 扩展
+    a. 只读设置，Immutable
+    b. 函数式编程， Predicate，Function，Collection2.filter，Collection2.transfer，Functions.compose
+    c. 约束 Constraint， 检查 Preconditions
+    d. 集合的操作，交集、并集、差集 Sets.intersection,  Sets.union,  Sets.difference
+    e. MultiMap
+    f. MultiSet
+    g. BiMap
+    h. Table
+
+
+我们，可以用 Java 8 自带的工具实现
+    b. 函数式编程 .stream() .filer()  .map()  .collect()  .forEach
+    d. 集合的操作，交集、并集、差集  retainAll  addAll  removeAll

@@ -1,0 +1,30 @@
+Commons-Collections
+
+提供一个类包，扩展、增强标准的 Java Collection 框架
+
+1. Predicate
+    用来判断某个判别式或者条件，进行筛选，可以看作是对 if 条件的封装，接口有唯一方法 evaluate() 放回 true false
+2. Transformer
+    将一个对象作为参数，返回一个经过转换处理后的新对象
+3. Closure
+    闭包，封装功能，实现解耦
+
+4. 集合操作，交集、并集、差集
+5. 迭代器，增强型的迭代器，带Predicate的Iterator
+
+
+
+5. MapIterator
+    可以避免用 map.keyset.iterator来处理map循环了
+    HashedMap
+6. BidiMap
+    通过 value 来找 key
+    TreeBidiMap
+7. Bag
+    在集合中，保存一个对象的多次拷贝
+    HashBag
+8. Queue
+    用于处理FIFO等定义好移除顺序的集合类
+9. CollectionUtils
+    工具类
+

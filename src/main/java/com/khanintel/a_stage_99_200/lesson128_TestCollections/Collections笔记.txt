@@ -1,0 +1,188 @@
+Collections 类
+
+1. addAll
+static <T> boolean
+ addAll(Collection<? super T> c, T... elements)
+          将所有指定元素添加到指定 collection 中。
+
+
+
+    2. binarySearch
+static <T> int
+ binarySearch(List<? extends Comparable<? super T>> list, T key)
+          使用二分搜索法搜索指定列表，以获得指定对象。
+static <T> int
+ binarySearch(List<? extends T> list, T key, Comparator<? super T> c)
+          使用二分搜索法搜索指定列表，以获得指定对象。
+
+
+
+3. checkedCollection
+static <E> Collection<E>
+ checkedCollection(Collection<E> c, Class<E> type)
+          返回指定 collection 的一个动态类型安全视图。
+static <E> List<E>
+ checkedList(List<E> list, Class<E> type)
+          返回指定列表的一个动态类型安全视图。
+static <K,V> Map<K,V>
+ checkedMap(Map<K,V> m, Class<K> keyType, Class<V> valueType)
+          返回指定映射的一个动态类型安全视图。
+static <E> Set<E>
+ checkedSet(Set<E> s, Class<E> type)
+          返回指定 set 的一个动态类型安全视图。
+static <K,V> SortedMap<K,V>
+ checkedSortedMap(SortedMap<K,V> m, Class<K> keyType, Class<V> valueType)
+          返回指定有序映射的一个动态类型安全视图。
+static <E> SortedSet<E>
+ checkedSortedSet(SortedSet<E> s, Class<E> type)
+          返回指定有序 set 的一个动态类型安全视图。
+
+
+4. copy
+static <T> void
+ copy(List<? super T> dest, List<? extends T> src)
+          将所有元素从一个列表复制到另一个列表。
+
+
+
+5. fill
+static <T> void
+ fill(List<? super T> list, T obj)
+          使用指定元素替换指定列表中的所有元素。
+
+
+
+6. frequency
+static int frequency(Collection<?> c, Object o)
+          返回指定 collection 中等于指定对象的元素数。
+
+
+
+7. indexOfSubList, lastIndexOfSubList
+static int indexOfSubList(List<?> source, List<?> target)
+          返回指定源列表中第一次出现指定目标列表的起始位置；如果没有出现这样的列表，则返回 -1。
+static int lastIndexOfSubList(List<?> source, List<?> target)
+          返回指定源列表中最后一次出现指定目标列表的起始位置；如果没有出现这样的列表，则返回 -1。
+
+
+8. list
+static <T> ArrayList<T>
+ list(Enumeration<T> e)
+          返回一个数组列表，它按返回顺序包含指定枚举返回的元素。
+
+
+
+9. max min
+static <T extends Object & Comparable<? super T>>
+T
+ max(Collection<? extends T> coll)
+          根据元素的自然顺序，返回给定 collection 的最大元素。
+static <T> T
+ max(Collection<? extends T> coll, Comparator<? super T> comp)
+          根据指定比较器产生的顺序，返回给定 collection 的最大元素。
+static <T extends Object & Comparable<? super T>>
+T
+ min(Collection<? extends T> coll)
+          根据元素的自然顺序 返回给定 collection 的最小元素。
+static <T> T
+ min(Collection<? extends T> coll, Comparator<? super T> comp)
+          根据指定比较器产生的顺序，返回给定 collection 的最小元素。
+
+
+10.
+static <T> boolean
+ replaceAll(List<T> list, T oldVal, T newVal)
+          使用另一个值替换列表中出现的所有某一指定值。
+
+
+
+11. reverse, reverseOrder,  rotate, shuffle, swap
+static void reverse(List<?> list)
+          反转指定列表中元素的顺序。
+static <T> Comparator<T>
+ reverseOrder()
+          返回一个比较器，它强行逆转实现了 Comparable 接口的对象 collection 的自然顺序。
+static <T> Comparator<T>
+ reverseOrder(Comparator<T> cmp)
+          返回一个比较器，它强行逆转指定比较器的顺序。
+static void rotate(List<?> list, int distance)
+          根据指定的距离轮换指定列表中的元素。
+static void shuffle(List<?> list)
+          使用默认随机源对指定列表进行置换。
+static void shuffle(List<?> list, Random rnd)
+          使用指定的随机源对指定列表进行置换。
+static void swap(List<?> list, int i, int j)
+          在指定列表的指定位置处交换元素。
+
+
+12. void
+static <T extends Comparable<? super T>>
+void
+ sort(List<T> list)
+          根据元素的自然顺序 对指定列表按升序进行排序。
+static <T> void
+ sort(List<T> list, Comparator<? super T> c)
+          根据指定比较器产生的顺序对指定列表进行排序。
+
+
+13. synchronized
+static <T> Collection<T>
+ synchronizedCollection(Collection<T> c)
+          返回指定 collection 支持的同步（线程安全的）collection。
+static <T> List<T>
+ synchronizedList(List<T> list)
+          返回指定列表支持的同步（线程安全的）列表。
+static <K,V> Map<K,V>
+ synchronizedMap(Map<K,V> m)
+          返回由指定映射支持的同步（线程安全的）映射。
+static <T> Set<T>
+ synchronizedSet(Set<T> s)
+          返回指定 set 支持的同步（线程安全的）set。
+static <K,V> SortedMap<K,V>
+ synchronizedSortedMap(SortedMap<K,V> m)
+          返回指定有序映射支持的同步（线程安全的）有序映射。
+static <T> SortedSet<T>
+ synchronizedSortedSet(SortedSet<T> s)
+          返回指定有序 set 支持的同步（线程安全的）有序 set。
+
+
+
+14. unmodifiable  checked
+static <T> Collection<T>
+ unmodifiableCollection(Collection<? extends T> c)
+          返回指定 collection 的不可修改视图。
+static <T> List<T>
+ unmodifiableList(List<? extends T> list)
+          返回指定列表的不可修改视图。
+static <K,V> Map<K,V>
+ unmodifiableMap(Map<? extends K,? extends V> m)
+          返回指定映射的不可修改视图。
+static <T> Set<T>
+ unmodifiableSet(Set<? extends T> s)
+          返回指定 set 的不可修改视图。
+static <K,V> SortedMap<K,V>
+ unmodifiableSortedMap(SortedMap<K,? extends V> m)
+          返回指定有序映射的不可修改视图。
+static <T> SortedSet<T>
+ unmodifiableSortedSet(SortedSet<T> s)
+          返回指定有序 set 的不可修改视图。
+
+
+static <E> Collection<E>
+ checkedCollection(Collection<E> c, Class<E> type)
+          返回指定 collection 的一个动态类型安全视图。
+static <E> List<E>
+ checkedList(List<E> list, Class<E> type)
+          返回指定列表的一个动态类型安全视图。
+static <K,V> Map<K,V>
+ checkedMap(Map<K,V> m, Class<K> keyType, Class<V> valueType)
+          返回指定映射的一个动态类型安全视图。
+static <E> Set<E>
+ checkedSet(Set<E> s, Class<E> type)
+          返回指定 set 的一个动态类型安全视图。
+static <K,V> SortedMap<K,V>
+ checkedSortedMap(SortedMap<K,V> m, Class<K> keyType, Class<V> valueType)
+          返回指定有序映射的一个动态类型安全视图。
+static <E> SortedSet<E>
+ checkedSortedSet(SortedSet<E> s, Class<E> type)
+          返回指定有序 set 的一个动态类型安全视图。

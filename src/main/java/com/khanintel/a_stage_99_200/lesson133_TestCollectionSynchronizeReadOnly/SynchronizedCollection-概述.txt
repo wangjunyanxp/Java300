@@ -1,0 +1,39 @@
+同步控制
+    多线程，并发访问集合，线程安全
+
+    1. 线程不安全的
+        ArrayList, LinkedList, HashMap, HashSet
+    2. 线程安全的
+        Vector, HashTable
+    3. 把线程不安全的，变成线程安全的
+
+        Collections.synchronizedXXX()
+        static <T> Collection<T> synchronizedCollection(Collection<T> c)
+                  返回指定 collection 支持的同步（线程安全的）collection。
+        static <T> List<T>  synchronizedList(List<T> list)
+                  返回指定列表支持的同步（线程安全的）列表。
+        static <K,V> Map<K,V>  synchronizedMap(Map<K,V> m)
+                  返回由指定映射支持的同步（线程安全的）映射。
+        static <T> Set<T> synchronizedSet(Set<T> s)
+                  返回指定 set 支持的同步（线程安全的）set。
+        static <K,V> SortedMap<K,V>  synchronizedSortedMap(SortedMap<K,V> m)
+                  返回指定有序映射支持的同步（线程安全的）有序映射。
+        static <T> SortedSet<T>  synchronizedSortedSet(SortedSet<T> s)
+                  返回指定有序 set 支持的同步（线程安全的）有序 set。
+
+        Collections.synchronizedXXX()的实现机制
+            简单看了下源代码，实现的机制比较简单，相当于就是把自己加锁了，synchronized (mutex)，所有的操作，都上锁。
+                    public int size() {
+                        synchronized (mutex) {return c.size();}
+                    }
+                    public boolean isEmpty() {
+                        synchronized (mutex) {return c.isEmpty();}
+                    }
+                    public boolean contains(Object o) {
+                        synchronized (mutex) {return c.contains(o);}
+                    }
+                    public Object[] toArray() {
+                        synchronized (mutex) {return c.toArray();}
+                    }
+
+

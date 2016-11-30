@@ -1,0 +1,73 @@
+查缺补漏    ListIterator
+
+
+来自于
+java.util.AbstractList
+
+也来自于
+java.util.List
+
+--------------------------------------------------------------------------------
+
+1. 这玩意是啥
+    java.util
+    接口 ListIterator<E>
+    所有超级接口：
+    Iterator<E>
+
+    public interface ListIterator<E>extends Iterator<E>系列表迭代器，允许程序员按任一方向遍历列表、迭代期间修改列表，并获得迭代器在列表中的当前位置。ListIterator 没有当前元素；它的光标位置 始终位于调用 previous() 所返回的元素和调用 next() 所返回的元素之间。长度为 n 的列表的迭代器有 n+1 个可能的指针位置，如下面的插入符举例说明：
+
+                          Element(0)   Element(1)   Element(2)   ... Element(n-1)
+     cursor positions:  ^            ^            ^            ^                  ^
+
+     注意，remove() 和 set(Object) 方法不是 根据光标位置定义的；它们是根据对调用 next() 或 previous() 所返回的最后一个元素的操作定义的。
+
+    此接口是 Java Collections Framework 的成员。
+
+    另请参见：
+    Collection, List, Iterator, Enumeration, List.listIterator()
+
+
+2. 如何获取到这个东西
+
+    listIterator()
+    listIterator(int index)
+
+
+        listIterator
+        public ListIterator<E> listIterator()返回此列表元素的列表迭代器（按适当顺序）。
+
+        指定者：
+        接口 List<E> 中的 listIterator
+        返回：
+        此列表中的元素的迭代器（按适当顺序）。
+        此实现返回 listIterator(0)。
+
+        另请参见：
+        listIterator(int)
+
+
+        ----------
+
+        listIterator
+        public ListIterator<E> listIterator(int index)返回列表中元素的列表迭代器（按适当顺序），从列表的指定位置开始。指定的索引表示 next 的初始调用所返回的第一个元素。previous 方法的初始调用将返回索引比指定索引少 1 的元素。
+        此实现返回 ListIterator 接口的直接实现，扩展了由 iterator() 方法返回的 Iterator 接口的实现。ListIterator 实现依赖于底层实现列表的 get(int)、set(int, E)、add(int, E) 和 remove(int) 方法。
+
+        注意，除非重写列表的 remove(int)、set(int, E) 和 add(int, E) 方法，否则此实现返回的列表迭代器将抛出 UnsupportedOperationException 来响应其 remove、set 和 add 方法。
+
+        根据 (protected) modCount 字段规范中的描述，在面临并发修改时，可以使此实现抛出运行时异常。
+
+
+        指定者：
+        接口 List<E> 中的 listIterator
+        参数：
+        index - 从列表迭代器返回的第一个元素的索引（通过调用 next 方法）
+        返回：
+        此列表中元素的列表迭代器（按适当顺序），从列表中的指定位置开始
+        抛出：
+        IndexOutOfBoundsException - 如果索引超出范围 (index < 0 || index > size())
+        另请参见：
+        modCount
+
+
+3. 代码我就不写了，反正你肯定会写的，啊哈哈

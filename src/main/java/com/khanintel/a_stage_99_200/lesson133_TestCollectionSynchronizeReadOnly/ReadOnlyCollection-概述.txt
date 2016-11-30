@@ -1,0 +1,73 @@
+0. 原因
+    为什么要不可变的Collection ?
+
+    unmodifiableXXX，这个应该应用的比较广，适用于不修改元素的场景。
+    emptyXXX，主要是为了避免空指针异常 nullPointerException
+
+
+
+1. 方法
+    a. unmodifiableXXX，把已经存在的容器，套出来一个不可变的容器
+        static <T> Collection<T>
+         unmodifiableCollection(Collection<? extends T> c)
+                  返回指定 collection 的不可修改视图。
+        static <T> List<T>
+         unmodifiableList(List<? extends T> list)
+                  返回指定列表的不可修改视图。
+        static <K,V> Map<K,V>
+         unmodifiableMap(Map<? extends K,? extends V> m)
+                  返回指定映射的不可修改视图。
+        static <T> Set<T>
+         unmodifiableSet(Set<? extends T> s)
+                  返回指定 set 的不可修改视图。
+        static <K,V> SortedMap<K,V>
+         unmodifiableSortedMap(SortedMap<K,? extends V> m)
+                  返回指定有序映射的不可修改视图。
+        static <T> SortedSet<T>
+         unmodifiableSortedSet(SortedSet<T> s)
+                  返回指定有序 set 的不可修改视图。
+
+        ***
+        实现机制
+            修改的操作，全部改写成 throw new UnsupportedOperationException
+                    public void add(int index, E element) {
+                        throw new UnsupportedOperationException();
+                    }
+
+    b. emptyXXX()，就是一个空的，不可变的容器
+        static <T> List<T>
+         emptyList()
+                  返回空的列表（不可变的）。
+        static <K,V> Map<K,V>
+         emptyMap()
+                  返回空的映射（不可变的）。
+        static <T> Set<T>
+         emptySet()
+                  返回空的 set（不可变的）。
+
+    c.simgleTonXXX
+        static <T> Set<T>
+         singleton(T o)
+                  返回一个只包含指定对象的不可变 set。
+        static <T> List<T>
+         singletonList(T o)
+                  返回一个只包含指定对象的不可变列表。
+        static <K,V> Map<K,V>
+         singletonMap(K key, V value)
+                  返回一个不可变的映射，它只将指定键映射到指定值。
+
+    d.nCopies
+        static <T> List<T>
+         nCopies(int n, T o)
+                  返回由指定对象的 n 个副本组成的不可变列表。
+
+
+2. Collections 类常量
+
+    字段摘要
+    static List EMPTY_LIST
+              空的列表（不可变的）。
+    static Map EMPTY_MAP
+              空的映射（不可变的）。
+    static Set EMPTY_SET
+              空的 set（不可变的）。

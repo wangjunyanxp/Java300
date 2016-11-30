@@ -1,0 +1,47 @@
+排序、TreeSet、TreeMap
+
+
+TreeMap  VS  HashMap
+     (树 VS 哈希）
+1. TreeMap，使用的是comparable 或者 comparator，排序所依赖的是排序算法，如果对比结果等于0（哪怕是两个不同的对象，只要对比结果==0），则认为 Key 一样
+2. HashMap，使用的是 hashCode 与 equals
+
+
+TreeMap、TreeSet
+    1. 关键点：TreeMap这棵树，不是随时随地永远排序的。它在插入的时候，会做Tree的排序。但是 Key 本身变化的话，甚至出现重复的 Key 的时候，则不会重排、也不会查到元素相同。
+    2. 本身使用的 Tree，只有增加、删除的方法，不存在更新某元素Key的方法，原因同上。
+    3. 为了避免上述的问题，放在 TreeMap/TreeSet 的 Key，这个对象的成员变量做成 final 的，同时也干掉元素对象的 set 方法（其实 set 方法肯定不能用了），这样避免出现不必要的麻烦。
+
+
+TreeMap，TreeSet
+    放的 Key 数据要么本身就是 Comparable 的，要么就是有传递 comparator
+    如果放的数据没有comparator，也没实现 comparable，那么，增加元素的代码在运行的时候，就会出现 auto cast to Comparable 失败的问题
+
+
+别的几句话--BestPractice
+1. 虽然用的是 Comparable/Comparator，但我个人强烈建议，如果对比的结果等于0，那么最好 equals/hashCode 的结果也一致。这个是我心中的 BestPractice
+
+
+做个小Demo
+    就是用TreeSet、TreeMap，然后添加数据
+    数据有实现Comparable，也是没实现但是有传Comparator的
+
+
+
+    public TreeMap() {
+        comparator = null;
+    }
+
+    public TreeMap(Comparator<? super K> comparator) {
+        this.comparator = comparator;
+    }
+
+
+
+    public TreeSet() {
+        this(new TreeMap<E,Object>());
+    }
+
+    public TreeSet(Comparator<? super E> comparator) {
+        this(new TreeMap<>(comparator));
+    }

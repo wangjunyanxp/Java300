@@ -1,0 +1,128 @@
+又一次的阶段性回顾，针对 Collection 的第二次回顾了
+
+
+Collection 的 回顾
+
+1. 继承关系
+
+    Collection--Set------HashSet--TreeSet
+    Collection--List------LinkedList--ArrayList--Vector
+    Map------HashTable--HashMap--Properties
+
+2. 三个知识点
+
+    迭代器，比较器，泛型
+
+2.1 迭代器 Iterator
+    java.util.Iterator
+    hasNext(), next(),remove()
+
+    Iterator & Iterable
+    Iterable，是一个 Interface，implements Iterable的，必须实现 iterator()方法，返回一个 Iterator
+    Iterable的类，都可以被迭代，用for-each的方法进行迭代
+
+2.2 比较器
+    java.util.Comparator
+    Comparator，是一个单独的类的比较用的工具类，可以脱离业务实体类而存在，提供多种比较、排序方案，排序逻辑与数据解耦
+    Comparator，里面有 compare(o1, o2) 的方法，返回的是一个带符号的整数。
+    常作为排序的工具类，在Collections.sort, Arrays.sort的时候，可以作为参数传进来；
+    也可作为自带排序属性的Tree [ TreeMap/TreeSet ]创建时的排序类 new TreeMap(Comparator c)等等，也是作为Tree来判断数据是否一致的判断依据。
+
+    Comparable, 实体类 implements Comparable，实现可排序属性
+    java.lang.Comparable
+
+    Comparable VS Comparator
+    Comparable，常常作为实体业务类的属性，implements Comparable，实现 compareTo方法
+    Comparator，排序的工具类，new Comparator，并override compare(o1, o2)方法
+
+2.3 泛型
+    <>，安全、省心，美丽的小钻石~
+    泛型类、泛型方法、泛型接口
+    泛型的继承、泛型的擦除
+    泛型的通配符，泛型的范围 extends super（注意，范围，可以与 T extends Fruit，不仅仅可以 ? extends Fruit）
+    泛型的嵌套 Iterator<Entry<K, V>>
+
+
+3. 六个重要接口
+    Comparable/compareTo + Comparator/compare(o1, o2)
+    Iterator + Iterable/iterator()
+    Collection
+    Set
+    List
+    Map
+
+
+4. 九个常用类
+
+    增、删、查、改（add, remove, get, set），遍历 Iterator
+
+4.1 ArrayList
+    add(element), add(index, element), get(index), remove(index), remove(element), size(), set(index, element)
+    基于数组的实现
+    修改少、读取多（读快，写慢）
+    遍历：for + get(index), for-each, Iterator, ListIterator
+
+4.2 LinkedList
+    基于链表的实现
+    修改多，读取少（写快，读慢）
+    用Iterator来访问，用index来访问
+    可以被用作Queue，事实上也是Queue，push/pop/peek
+
+4.3 HashSet
+    基于HashMap的实现
+    凡是用到Hash的，都需要 rewrite 实体业务类的 hashCode() equals()
+    用Iterator来访问
+
+4.4 TreeSet
+    平衡的查找、读取速度，都比较快
+    自带添加时排序的能力，实体类Comparable或有Comparator
+
+4.5 HashMap
+    基于数组+链表的实现，链表作为bucket
+    K最多一个null，V可以多个null
+    遍历方法 map.keySet.iterator
+    put(K,V), remove(K), get(K), containsKey(K), containsValue(V), keySet(), values(), entrySet()
+
+4.6 HashTable
+    线程安全的，比HashMap略慢的Map
+    extends Directory implements Map
+    K，V都不能是 null
+    遍历获得 Key:   keySet(), entrySet + iterator + getKey
+    遍历获得 Value: keySet() + iterator + get(K), entrySet + iterator + getValue， values()
+    遍历获得 Key+Value: entrySet() + iterator + getKey + getValue,  keySet() + iterator + get(K)
+
+4.7 Properties
+    资源配置文件
+    基于HashTable的实现，键、值都是String
+    不要用 put 方法，因为 put 方法不会限制 String input only
+    用相对路径来进行访问
+
+4.8 Stack
+    Stack已经被淘汰了,现在都用 Interface Deque，双向队列来做栈（LinkedList也可以做栈，但ArrayDeque的性能更好）
+    FILO，直接从 双向Queue 引申出来
+
+4.9 Collections
+    很好用的工具类
+    集合的 binarySearch, synchronizedXXX, sort，max，min，unmodifiableXXX
+    集合的运算交集 retainAll、并集 addAll、差集 removeAll
+
+
+5. 相对路径
+    Class.getResource()
+    Class.getResourceAsStream("FileName")
+    Thread.currentThread().getContextClassLoader().getResource();
+
+    TestProperties.class.getResource();
+    Thread.currentThread().getContextClassLoader().getResource();
+    TestProperties.class.getResourceAsStream("db.properties")
+    Thread.currentThread().getContextClassLoader().getResourceAsStream("com/khanintel/lesson131_TestHashMapHashTablePropreties/properties.properties");
+
+6. 函数式编程
+    .stream().filter().map().collect().forEach()
+    Predicate
+    Function
+    Closure
+
+7. 扩展的工具类
+    Guava
+    Apache Commons Collections
